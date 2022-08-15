@@ -34,7 +34,7 @@ public class VistaWidgetRAM extends JPanel {
     private ControladorWidgetRAM control;
 
     // Constantes
-    private static final Dimension buttonSize = new Dimension(22, 22);
+    private static final Dimension buttonSize = new Dimension(15, 22);
     private static final Dimension WIDGET_SIZE = new Dimension(220, 550);
     public static final Color COLOR_ON = new Color(246, 203, 225);
     public static final Color COLOR_OFF = new Color(246, 213, 203);
@@ -64,10 +64,10 @@ public class VistaWidgetRAM extends JPanel {
         this.sistema.getRAM().addRAMObserver(getControl());
 
         // Crea el array de botones que representan cada bit en cada posición de memory
-        btnArrayBotones = new JButton[16][8]; // 16 posiciones de 8 bit cada una
+        btnArrayBotones = new JButton[16][16]; // 16 posiciones de 8 bit cada una
         for (int i = 0; i < 16; i++) {
-            for (int j = 0; j < 8; j++) {
-                this.btnArrayBotones[i][j] = new JButton("" + getControl().buscarEnRAM(i, 7 - j));
+            for (int j = 0; j < 16; j++) {
+                this.btnArrayBotones[i][j] = new JButton("" + getControl().buscarEnRAM(i, 15 - j));
                 this.btnArrayBotones[i][j].setPreferredSize(buttonSize);
                 this.btnArrayBotones[i][j].setActionCommand(i + "," + j);
                 this.btnArrayBotones[i][j].addActionListener(getControl());
@@ -177,7 +177,7 @@ public class VistaWidgetRAM extends JPanel {
         // Agregue el borde inferior a la visualización de RAM
         for (int i = 0; i < this.btnArrayBotones[0].length; i++) {
             // La pieza inferior derecha tiene un borde especial
-            if (i == 7) {
+            if (i == 15) {
                 this.btnArrayBotones[this.btnArrayBotones.length - 1][i]
                         .setBorder(BOTTOM_RIGHT_BORDER);
             } else {

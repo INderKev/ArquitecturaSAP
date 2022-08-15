@@ -26,8 +26,8 @@ public class ProgramCounter implements IRegistro {
 
     // Incrementa el contador del programa
     public void activarConteo() {
-        if (this.valor == 15) {
-            // Si el PC ya está en 15, reinícielo ya que eso representa un desbordamiento de 4 bits
+        if (this.valor == 63) {
+            // Si el PC ya está en 15, reinícielo ya que eso representa un desbordamiento de 6 bits
             this.valor = 0;
         } else {
             this.valor++;

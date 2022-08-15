@@ -68,8 +68,9 @@ public class ControladorWidgetRAM implements interfaces.IRAMObserver, ActionList
 
         // Pintar el nuevo valor con el color correcto
         widgetRAM.setValorMAR(v);
+        System.out.println(widgetRAM.getValorMAR());
         cambiaValorRAM(widgetRAM.getValorMAR());
-
+        
         // Elimina la coloración especial del antiguo valor MAR
         cambiaValorRAM(oldVal);
     }
@@ -204,7 +205,7 @@ public class ControladorWidgetRAM implements interfaces.IRAMObserver, ActionList
         byte address = Byte.parseByte(e.getActionCommand().substring(0, e.getActionCommand().indexOf(",")));
         // Analizar el cambio de  bit en la posición 
         byte bitPos = Byte.parseByte(e.getActionCommand().substring(e.getActionCommand().indexOf(",") + 1));
-        bitPos = (byte) (7 - bitPos);
+        bitPos = (byte) (15 - bitPos);
 
         // Obtener el valor actual del bit agregar la posición modificada
         int currVal = buscarEnRAM(address, bitPos);
@@ -229,7 +230,7 @@ public class ControladorWidgetRAM implements interfaces.IRAMObserver, ActionList
     // Función auxiliar para acceder a bits individuales en la memoria; Address: [0, 15]
     // bitPos: [0, 7]
     public int buscarEnRAM(int address, int bitPos) {
-        int val = 0b111111111111111111111111 & this.sistema.getRAM().getData()[address];
+        int val = 0b1111111111111111 & this.sistema.getRAM().getData()[address];
         return (val >> bitPos) & 0b1;
     }
 }

@@ -21,14 +21,14 @@ public class Memoria {
     private List<IRAMObserver> observers;
 
     public Memoria(IRegistro MAR) {
-        capacidadMemoria = 24;
+        capacidadMemoria = 16;
         
         this.data = new byte[capacidadMemoria];
         this.MAR = MAR;
         this.observers = new ArrayList<IRAMObserver>();
 
         // Cargar valores basura en la memoria (para probar)
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 16; i++) {
             this.data[i] = (byte) ThreadLocalRandom.current().nextInt(0, 254);
         }
 
